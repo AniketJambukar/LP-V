@@ -1,0 +1,45 @@
+#Bubble sort
+
+#include <iostream>
+#include <omp.h>
+using namespace std;
+
+int main() {
+    int a[5] = {5,4,3,2,1};
+
+    #pragma omp parallel for
+    for(int i=0; i<5; i++) {
+        for(int j=0; j<4-i; j++) {
+            if(a[j] > a[j+1])
+                swap(a[j], a[j+1]);
+        }
+    }
+
+    cout << "Sorted Array: ";
+    for(int i=0; i<5; i++)
+        cout << a[i] << " ";
+}
+
+
+# Merge sort 
+
+#include <iostream>
+#include <algorithm>
+#include <omp.h>
+using namespace std;
+
+int main() {
+    int a[5] = {5,2,4,1,3};
+
+    #pragma omp parallel for
+    for(int i=0; i<5-1; i++) {
+        for(int j=i+1; j<5; j++) {
+            if(a[i] > a[j])
+                swap(a[i], a[j]);
+        }
+    }
+
+    cout << "Merge Sort: ";
+    for(int i=0; i<5; i++)
+        cout << a[i] << " ";
+}
