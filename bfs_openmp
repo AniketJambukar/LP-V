@@ -1,3 +1,4 @@
+#bfs
 #include <iostream>
 #include <queue>
 #include <omp.h>
@@ -34,4 +35,37 @@ int main() {
             }
         }
     }
+}
+
+#dfs 
+
+#include <iostream>
+#include <omp.h>
+using namespace std;
+
+int graph[5][5] = {
+    {0,1,1,0,0},
+    {1,0,0,1,1},
+    {1,0,0,0,0},
+    {0,1,0,0,0},
+    {0,1,0,0,0}
+};
+
+bool visited[5] = {false};
+
+void dfs(int node) {
+    visited[node] = true;
+    cout << node << " ";
+
+    #pragma omp parallel for
+    for(int i = 0; i < 5; i++) {
+        if(graph[node][i] && !visited[i]) {
+            dfs(i);
+        }
+    }
+}
+
+int main() {
+    cout << "DFS: ";
+    dfs(0);
 }
