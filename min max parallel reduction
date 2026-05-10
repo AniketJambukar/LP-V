@@ -1,0 +1,22 @@
+from multiprocessing import Pool
+
+data = [4, 8, 2, 5, 10, 3, 7, 1, 9, 6]
+
+def find_min(x):
+    return min(x)
+
+def find_max(x):
+    return max(x)
+
+def find_sum(x):
+    return sum(x)
+
+def find_avg(x):
+    return sum(x) / len(x)
+
+if __name__ == "__main__":
+    with Pool() as p:
+        print("Min:", p.apply(find_min, (data,)))
+        print("Max:", p.apply(find_max, (data,)))
+        print("Sum:", p.apply(find_sum, (data,)))
+        print("Average:", p.apply(find_avg, (data,)))
